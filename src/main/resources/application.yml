@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/shopdb?useSSL=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Europe/Warsaw&autoReconnect=true&characterEncoding=UTF-8&useUnicode=yes
+    username: root
+    password: Martin1297*
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+
