@@ -18,7 +18,7 @@ public class ProductController {
     private final ProductMapper productMapper;
 
     @GetMapping("{id}")
-    public ProductDto getUser(@PathVariable long id) {
+    public ProductDto getProduct(@PathVariable long id) {
         return productMapper.productToProductDto(productService.getProductById(id));
     }
 
@@ -33,7 +33,7 @@ public class ProductController {
         productService.addProduct(productMapper.productDtoToProduct(productDto));
     }
 
-    @DeleteMapping("{id")
+    @DeleteMapping("{id}")
     public void deleteProduct(@PathVariable long id) {
         productService.deleteProductById(id);
     }
