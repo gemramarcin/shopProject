@@ -8,11 +8,9 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity
 @Data
@@ -29,6 +27,9 @@ public class User {
     private String lastName;
     private String email;
     private String password;
+    @ManyToMany
+    private Set<Role> roles;
+
     @CreatedDate
     private LocalDateTime createdDate;
     @LastModifiedDate
