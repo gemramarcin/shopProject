@@ -21,21 +21,18 @@ public class AppConfig {
     @Bean
     public CommandLineRunner commandLineRunner(RoleRepository roleRepository) {
         return args -> {
-            Optional<Role> roleUser = roleRepository.findByName("ROLE_USER");
-            if (roleUser.isEmpty()) {
-                roleRepository.save(Role.builder()
-                        .name("ROLE_USER")
-                        .build());
-            }
-
-            Optional<Role> roleUserAdmin = roleRepository.findByName("ROLE_ADMIN");
-            if (roleUser.isEmpty()) {
-                roleRepository.save(Role.builder()
-                        .name("ROLE_ADMIN")
-                        .build());
-            }
+            createRoleIfEmpty("ROLE_USER", roleRepository);
+            createRoleIfEmpty("ROLE_ADMIN", roleRepository);
         };
     }
 
-    ;
+    private void createRoleIfEmpty(String roleName, RoleRepository roleRepository){
+        Optional<Role> role = roleRepository.findByName(roleName);
+        if (role.isEmpty()) {
+            roleRepository.save(Role.builder()
+                    .name(roleName)
+                    .build());
+        }
+
+    }
 }
