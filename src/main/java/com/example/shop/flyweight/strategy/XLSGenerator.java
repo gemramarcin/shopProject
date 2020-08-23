@@ -4,13 +4,15 @@ import com.example.shop.generator.domain.FileType;
 import org.springframework.stereotype.Component;
 
 @Component
-public class XLSGenerator extends GeneratorStrategy {
-    public XLSGenerator() {
-        super(FileType.XLS);
-    }
+public class XLSGenerator implements GeneratorStrategy {
 
     @Override
     public void generateFile() {
         System.out.println("XLS");
+    }
+
+    @Override
+    public FileType getType() {
+        return FileType.XLS;
     }
 }
