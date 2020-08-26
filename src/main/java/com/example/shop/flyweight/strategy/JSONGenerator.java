@@ -3,7 +3,7 @@ package com.example.shop.flyweight.strategy;
 import com.example.shop.generator.domain.FileType;
 import org.springframework.stereotype.Component;
 
-@Component
+@Component("JSONGeneratorF")
 public class JSONGenerator implements GeneratorStrategy {
 
     @Override

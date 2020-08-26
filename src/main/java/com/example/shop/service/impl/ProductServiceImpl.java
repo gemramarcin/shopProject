@@ -4,6 +4,7 @@ import com.example.shop.domain.dao.Product;
 import com.example.shop.repository.ProductRepository;
 import com.example.shop.service.ProductService;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -12,18 +13,21 @@ import javax.persistence.EntityNotFoundException;
 
 @Service
 @AllArgsConstructor
+@Slf4j
 public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
 
     @Override
     public Product getProductById(long id) {
+        log.info("Object doesn't exist in cache {}", id);
         return productRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Product not found"));
     }
 
     @Override
-    public void addProduct(Product product) {
-        productRepository.save(product);
+    public Product addProduct(Product product) {
+        return productRepository.save(product);
+
     }
 
     @Override
@@ -32,7 +36,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void updateProduct(long id, Product product) {
+    public Product updateProduct(long id, Product product) {
 
         Product updatedProduct = getProductById(id);
 
@@ -41,7 +45,7 @@ public class ProductServiceImpl implements ProductService {
         updatedProduct.setPrice(product.getPrice());
         updatedProduct.setQuantity(product.getQuantity());
 
-        productRepository.save(updatedProduct);
+        return productRepository.save(updatedProduct);
     }
 
     @Override

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class TestScheduler {
 
-    @Scheduled(fixedRate = 1000)
+  //  @Scheduled(fixedRate = 1000)
     public void test() {
         log.info("test");
     }

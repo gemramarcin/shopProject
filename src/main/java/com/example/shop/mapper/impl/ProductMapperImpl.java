@@ -15,6 +15,7 @@ public class ProductMapperImpl implements ProductMapper {
                 .name(productDto.getName())
                 .price(productDto.getPrice())
                 .quantity(productDto.getQuantity())
+                .version(productDto.getVersion())
                 .build();
     }
 
@@ -26,6 +27,7 @@ public class ProductMapperImpl implements ProductMapper {
                 .name(product.getName())
                 .price(product.getPrice())
                 .quantity(product.getQuantity())
+                .version(product.getVersion())
                 .build();
     }
 }

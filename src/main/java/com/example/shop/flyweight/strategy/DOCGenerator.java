@@ -3,7 +3,7 @@ package com.example.shop.flyweight.strategy;
 import com.example.shop.generator.domain.FileType;
 import org.springframework.stereotype.Component;
 
-@Component
+@Component("DOCGeneratorF")
 public class DOCGenerator implements GeneratorStrategy {
 
 
