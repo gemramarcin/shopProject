@@ -9,6 +9,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import java.time.LocalDateTime;
 import java.util.Set;
 
@@ -25,6 +26,8 @@ public class User {
     private Long id;
     private String firstName;
     private String lastName;
+    @Column(unique = true)
+    @Email
     private String email;
     private String password;
     @ManyToMany

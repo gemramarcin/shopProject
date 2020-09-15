@@ -10,6 +10,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @AllArgsConstructor
 @RestController
 @RequestMapping("api/users")
@@ -19,7 +21,7 @@ public class UserController {
     private final UserMapper userMapper;
 
     @PostMapping
-    public void addUser(@RequestBody UserDto userDto) {
+    public void addUser(@RequestBody @Valid UserDto userDto) {
         userService.save(userMapper.userDtoToUser(userDto));
     }
 

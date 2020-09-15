@@ -1,14 +1,14 @@
 package com.example.shop.flyweight.strategy;
 
-import com.example.shop.generator.domain.FileType;
+import com.example.shop.flyweight.domain.FileType;
 import org.springframework.stereotype.Component;
 
-@Component("JSONGeneratorF")
+@Component
 public class JSONGenerator implements GeneratorStrategy {
 
     @Override
-    public void generateFile() {
-        System.out.println("JSON");
+    public byte[] generateFile() {
+        return new byte[0];
     }
 
     @Override

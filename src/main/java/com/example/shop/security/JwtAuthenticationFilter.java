@@ -40,6 +40,8 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.joining(",")));
 
+        System.out.println(authResult.getAuthorities());
+
         String token = Jwts.builder()
                 .setClaims(claims)
                 .signWith(SignatureAlgorithm.HS512, "jtotfx")

@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class HazelcastConfig {
 
+
+
     @Bean
     public Config configHazelcast(){
         return new Config()
@@ -18,6 +20,7 @@ public class HazelcastConfig {
                                 .setSize(1111)
                                 .setMaxSizePolicy(MaxSizePolicy.FREE_HEAP_SIZE))
                         .setTimeToLiveSeconds(60 * 60 * 24));
+
 
     }
 }
