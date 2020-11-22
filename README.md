@@ -29,3 +29,5 @@ Project is created with:
 
 ## Setup
 To run this projects:
+$ mvn clean package spring-boot:run -Dspring-boot.run.arguments=--spring.datasource.password=yourpassword
+
