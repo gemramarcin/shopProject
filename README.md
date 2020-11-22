@@ -9,7 +9,7 @@ App created with Java, Spring and MySQL
 * [Setup](#setup)
 
 ## General info
-This project was created to learn Spring, JWT standard, creating simple tests using JUnit and implementing CRUD operations using Spring Data. 
+This project was created to learn Spring, JWT standard, creating simple tests using JUnit, caching in Spring and implementing CRUD operations using Spring Data. 
 
 ## Technologies
 Project is created with:
