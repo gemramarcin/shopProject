@@ -1,6 +1,6 @@
 package com.example.shop.service.impl;
 
-import com.example.shop.repository.UserRepository;
+import com.example.shop.repository.jpa.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;

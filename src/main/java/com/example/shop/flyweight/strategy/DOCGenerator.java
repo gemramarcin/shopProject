@@ -1,7 +1,7 @@
 package com.example.shop.flyweight.strategy;
 
 import com.example.shop.flyweight.domain.FileType;
-import com.example.shop.repository.ProductRepository;
+import com.example.shop.repository.jpa.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;

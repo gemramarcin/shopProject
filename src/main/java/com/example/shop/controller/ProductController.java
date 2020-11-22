@@ -4,13 +4,14 @@ import com.example.shop.domain.dto.ProductDto;
 import com.example.shop.mapper.ProductMapper;
 import com.example.shop.service.impl.ProductServiceImpl;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@AllArgsConstructor
-@RequestMapping("api/products")
+@RequiredArgsConstructor
+@RequestMapping("/api/products")
 public class ProductController {
 
 

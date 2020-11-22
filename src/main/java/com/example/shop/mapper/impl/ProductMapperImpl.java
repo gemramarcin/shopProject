@@ -2,8 +2,13 @@ package com.example.shop.mapper.impl;
 
 import com.example.shop.domain.dao.Product;
 import com.example.shop.domain.dto.ProductDto;
+import com.example.shop.domain.elastic.ProductBasket;
 import com.example.shop.mapper.ProductMapper;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Component
 public class ProductMapperImpl implements ProductMapper {
@@ -29,5 +34,17 @@ public class ProductMapperImpl implements ProductMapper {
                 .quantity(product.getQuantity())
                 .version(product.getVersion())
                 .build();
+    }
+
+    @Override
+    public List<ProductDto> productsBasketToProductsDto(Set<ProductBasket> productsBasket) {
+        return productsBasket.stream()
+                .map(productBasket -> ProductDto.builder()
+                        .name(productBasket.getName())
+                        .price(productBasket.getPrice())
+                        .quantity(productBasket.getQuantity())
+                        .id(productBasket.getId())
+                        .build())
+                .collect(Collectors.toList());
     }
 }

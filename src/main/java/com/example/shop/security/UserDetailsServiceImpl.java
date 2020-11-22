@@ -1,6 +1,6 @@
 package com.example.shop.security;
 
-import com.example.shop.repository.UserRepository;
+import com.example.shop.repository.jpa.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;

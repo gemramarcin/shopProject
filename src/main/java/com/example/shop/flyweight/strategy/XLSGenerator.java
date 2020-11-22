@@ -2,13 +2,10 @@ package com.example.shop.flyweight.strategy;
 
 import com.example.shop.domain.dao.Product;
 import com.example.shop.flyweight.domain.FileType;
-import com.example.shop.repository.ProductRepository;
+import com.example.shop.repository.jpa.ProductRepository;
 import lombok.RequiredArgsConstructor;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.poi.ss.usermodel.*;
 import org.springframework.stereotype.Component;
 
 import java.io.ByteArrayOutputStream;
@@ -17,6 +14,7 @@ import java.util.List;
 
 @Component
 @RequiredArgsConstructor
+@Slf4j
 public class XLSGenerator implements GeneratorStrategy {
 
     private final ProductRepository productRepository;
@@ -26,49 +24,54 @@ public class XLSGenerator implements GeneratorStrategy {
 
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
 
-        XSSFWorkbook workbook = new XSSFWorkbook();
-        XSSFSheet sheet = workbook.createSheet("Products");
 
-        XSSFRow row = sheet.createRow(0);
-
-        String[] header = {"id", "name", "quantity", "price", "description"};
-
-        for (int i = 0; i < header.length; i++) {
-            XSSFCell cell = row.createCell(i);
-            cell.setCellValue(header[i]);
-        }
+        try (Workbook workbook = WorkbookFactory.create(true)) {
 
 
-        List<Product> products = productRepository.findAll();
+            Sheet sheet = workbook.createSheet("Products");
 
-        if(!products.isEmpty()){
-            for (int i = 0; i < products.size(); i++) {
-                row = sheet.createRow(i + 1);
-                XSSFCell cell = row.createCell(0);
-                cell.setCellValue(products.get(i).getId().toString());
+            Row row = sheet.createRow(0);
 
-                XSSFCell cell1 = row.createCell(1);
-                cell1.setCellValue(products.get(i).getName());
+            String[] header = {"id", "name", "quantity", "price", "description"};
 
-                XSSFCell cell2 = row.createCell(2);
-                cell2.setCellValue(products.get(i).getQuantity().toString());
-
-                XSSFCell cell3 = row.createCell(3);
-                cell3.setCellValue(products.get(i).getPrice().toString());
-
-                XSSFCell cell4 = row.createCell(4);
-                cell4.setCellValue(products.get(i).getDescription());
-                }
+            for (int i = 0; i < header.length; i++) {
+                Cell cell = row.createCell(i);
+                cell.setCellValue(header[i]);
             }
 
 
-        try {
+            List<Product> products = productRepository.findAll();
+
+            if (!products.isEmpty()) {
+                for (int i = 0; i < products.size(); i++) {
+                    row = sheet.createRow(i + 1);
+                    Cell cell = row.createCell(0);
+                    cell.setCellValue(products.get(i).getId().toString());
+
+                    Cell cell1 = row.createCell(1);
+                    cell1.setCellValue(products.get(i).getName());
+
+                    Cell cell2 = row.createCell(2);
+                    cell2.setCellValue(products.get(i).getQuantity().toString());
+
+                    Cell cell3 = row.createCell(3);
+                    cell3.setCellValue(products.get(i).getPrice().toString());
+
+                    Cell cell4 = row.createCell(4);
+                    cell4.setCellValue(products.get(i).getDescription());
+                }
+            }
+
             workbook.write(stream);
+
+
+            return stream.toByteArray();
+
         } catch (IOException e) {
-            e.printStackTrace();
+           log.error(e.getMessage(), e);
         }
 
-        return stream.toByteArray();
+        return new byte[0];
     }
 
     @Override

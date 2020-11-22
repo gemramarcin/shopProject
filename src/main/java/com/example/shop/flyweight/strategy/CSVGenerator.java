@@ -2,7 +2,7 @@ package com.example.shop.flyweight.strategy;
 
 
 import com.example.shop.flyweight.domain.FileType;
-import com.example.shop.repository.ProductRepository;
+import com.example.shop.repository.jpa.ProductRepository;
 import com.opencsv.CSVWriter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
